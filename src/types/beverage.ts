@@ -19,7 +19,7 @@ interface SyrupType {
 type BeverageType = {
   id: string;
   name: string;
-  temp: string;
+  temperature: string;
   base: BaseBeverageType;
   syrup: SyrupType;
   creamer: CreamerType;

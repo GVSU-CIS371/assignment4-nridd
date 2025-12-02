@@ -3,7 +3,20 @@ import "./styles/mug.scss";
 import { createPinia } from "pinia";
 import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 import App from "./App.vue";
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedState);
+import { useBeverageStore } from "./stores/beverageStore";
 
-createApp(App).use(pinia).mount("#app");
+async function bootstrap() {
+  const app = createApp(App);
+
+  const pinia = createPinia();
+  pinia.use(piniaPluginPersistedState);
+
+  app.use(pinia);
+
+  const beverageStore = useBeverageStore();
+  await beverageStore.init();
+
+  app.mount("#app");
+}
+
+bootstrap();
